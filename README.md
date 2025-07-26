@@ -1,6 +1,6 @@
 # HSC Bangla Literature RAG API
 
-This project is a Retrieval-Augmented Generation (RAG) system designed to answer questions about HSC-level Bangla literature. It processes a PDF of a Bangla story, extracts the text using OCR, and uses a conversational AI chain powered by Google's Gemini models to answer user queries based on the text.
+This project is a Retrieval-Augmented Generation (RAG) system designed to answer questions about HSC-level Bangla literature. It processes a PDF of a Bangla story called "অপরিচিতা", extracts the text using OCR, and uses a conversational AI chain powered by Google's Gemini models to answer user queries based on the text.
 
 ---
 
