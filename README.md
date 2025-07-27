@@ -36,7 +36,7 @@ This project is a Retrieval-Augmented Generation (RAG) system designed to answer
 3.  **Set Up API Keys**
     This project requires a Google Gemini API key and an ngrok authentication token.
     - In your Google Colab environment, store your Gemini API key as a secret named `GOOGLE_API_KEY_1`.
-    - In the API code block, replace `"30Mp4YhMiIT6evuX74fObq8eISF_6dRn6Qz8sYvnBQBdMrUat"` with your ngrok authentication token.
+    - In the API code block, replace `"30Mp4YhMiIT6evuX74fObq8eISF_6dRn6Qz8sYvnBQBdMrUatss"` with your ngrok authentication token.
 
 4.  **Add Data**
     Place your PDF file in the `/content/` directory and ensure its name is `HSC26-Bangla1st-Paper.pdf`, as this path is hardcoded in the notebook.
