@@ -36,7 +36,7 @@ This project is a Retrieval-Augmented Generation (RAG) system designed to answer
 3.  **Set Up API Keys**
     This project requires a Google Gemini API key and an ngrok authentication token.
     - In your Google Colab environment, store your Gemini API key as a secret named `GOOGLE_API_KEY_1`.
-    - In the API code block, replace `"30Mp4YhMiIT6evuX74fObq8eISF_6dRn6Qz8sYvnBQBdMrUatss"` with your ngrok authentication token.
+    - In the API code block, replace `"30Mp4YhMiIT6evuX74fObq8eISF_6dRn6Qz8sYvnBQBdMrUat"` with your ngrok authentication token.
 
 4.  **Add Data**
     Place your PDF file in the `/content/` directory and ensure its name is `HSC26-Bangla1st-Paper.pdf`, as this path is hardcoded in the notebook.
@@ -109,7 +109,9 @@ I managed to employ a two-stage approach to extracting text. To process a PDF do
 
 The reason to opt for this is that the source PDF is a scanned document, and not a digitally native text file. It is not copy-paste friendly and therefore OCR was the only option of extraction.
 
-Indeed, I had serious formatting problems. The output of OCR was distorted and lined with noise. I used OpenCV (`cv2`) and Pillow (`PIL`) to alleviate this in a form of an image pre-processing step. I changed the image colors into another color space, used a sharpening kernel and contrast. This improvement helped Tesseract read the text more clearly, which in turn gave an enormous boost in the accuracy of the extracted Bengali text.
+Moreover, I faced problems dealing with multicolored text, I solved it by separating the background color white from any other color presented in the pdf.
+
+I had serious formatting problems. The output of OCR was distorted and lined with noise. I used OpenCV (`cv2`) and Pillow (`PIL`) to alleviate this in a form of an image pre-processing step. I changed the image colors into another color space, used a sharpening kernel and contrast. This improvement helped Tesseract read the text more clearly, which in turn gave an enormous boost in the accuracy of the extracted Bengali text.
 
 ### **2. What chunking strategy did you choose? Why do you think it works well for semantic retrieval?**
 
@@ -148,7 +150,7 @@ Hallucinate a correct response on the basis of the confused context.
 
 According to the evaluation matrix, the outcomes are somewhat relevant and can use some improvement.
 
-The 1.0 `context_recall` score is outstanding, meaning that the retriever can retrieve the right document. but the score `context_precision` is extremely low (valued around 0.25-0.28) indicating that it is returning a bunch of irrelevant data along with the correct chunks. The negative effect of this "noise" is reflected in the average scores of `answer_relevancy` and one of the answers detailing Kalyani age was inaccurate.
+The 1.0 `context_recall` score is outstanding, meaning that the retriever can retrieve the right document. but the score `context_precision` is extremely low (valued around 0.25-0.28) indicating that it is returning a bunch of irrelevant data along with the correct chunks. The negative effect of this "noise" is reflected in the average scores of `answer_relevancy` and one of the answers detailing "কল্যাণীর বয়স" was inaccurate. I did a few trial and errors but failed to extract the exact ansswer "পনেরো" 
 
 The following would help to enhance the outcomes:
 1. Minimize the `k` Value: The most consequential alteration to make would decrease the number of documents retrieved. The retriever will fetch `k=15` chunks which is excessive and saturates the context with noise. A decrease in this to a smaller set, such as `k=3` or `k=5`, would probably increase precision by a wide margin.
